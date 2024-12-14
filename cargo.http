@@ -21,10 +21,9 @@ PUT http://localhost:80/api/curso/update/3
 Content-Type: application/json
 
 {
-    "nombre": "Curso de Angular 2024",
-    "descripcion": "Es un framework fronted",
-    "duracion": 25,
-    "costo":150
+    "nombre": "Gerente",
+  "imagenUrl": "https://www.shutterstock.com/image-photo/fashion-face-joy-man-studio-260nw-2472679943.jpg",
+  "descripcion": " de sistema"
 }
 ### Eliminar Logicamente
 
