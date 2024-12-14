@@ -1,0 +1,34 @@
+
+###  para obtener todos los cursos 
+GET  http://localhost:80/api/cargo/
+
+### para obtener un curso en espesifico
+GET  http://localhost:80/api/curso/3
+### para crear un nuevo curso
+POST http://localhost:80/api/cargo/register
+Content-Type: application/json
+
+{
+  "nombre": "Gerente",
+  "imagenUrl": "https://www.shutterstock.com/image-photo/fashion-face-joy-man-studio-260nw-2472679943.jpg",
+  "descripcion": " de sistema"
+}
+
+
+
+### Actualizar los Cursos 
+PUT http://localhost:80/api/curso/update/3
+Content-Type: application/json
+
+{
+    "nombre": "Curso de Angular 2024",
+    "descripcion": "Es un framework fronted",
+    "duracion": 25,
+    "costo":150
+}
+### Eliminar Logicamente
+
+PUT http://localhost:80/api/curso/delete/3
+Content-Type: application/json
+
+

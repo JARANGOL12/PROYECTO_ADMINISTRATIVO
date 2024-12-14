@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cargo {
+  idCargo        Int              @id @default(autoincrement())
+  Nombre         String           @db.Text
+  Imagen_url     String           @db.Text
+  Descripcion    String?          @db.Text
+  gestiondocente gestiondocente[]
+  profesor       profesor[]
+  tarea          tarea[]
+  usuario        usuario[]
+}
+
+model gestiondocente {
+  idGestion             Int      @id @default(autoincrement())
+  idProfesor            Int
+  idCargoAdministrativo Int
+  FechaGestion          DateTime @db.Date
+  TipoGestion           String   @db.Text
+  Descripcion           String?  @db.Text
+  Puntaje               Int?
+  idSede                Int
+  profesor              profesor @relation(fields: [idProfesor], references: [idProfesor], onDelete: NoAction, onUpdate: NoAction, map: "gestiondocente_ibfk_1")
+  cargo                 cargo    @relation(fields: [idCargoAdministrativo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction, map: "gestiondocente_ibfk_2")
+  sede                  sede     @relation(fields: [idSede], references: [idSede], onDelete: NoAction, onUpdate: NoAction, map: "gestiondocente_ibfk_3")
+
+  @@index([idCargoAdministrativo], map: "idCargoAdministrativo")
+  @@index([idProfesor], map: "idProfesor")
+  @@index([idSede], map: "idSede")
+}
+
+model profesor {
+  idProfesor         Int                  @id @default(autoincrement())
+  Nombre             String               @db.Text
+  Apellido           String               @db.Text
+  Documento          String               @db.Text
+  NumeroDocumento    String               @db.VarChar(20)
+  Email              String               @db.Text
+  Telefono           String?              @db.VarChar(15)
+  Especialidad       String?              @db.Text
+  Estado             Boolean?             @default(true)
+  FechaRegistro      DateTime             @db.Date
+  idCargo            Int
+  idSede             Int
+  gestiondocente     gestiondocente[]
+  cargo              cargo                @relation(fields: [idCargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction, map: "profesor_ibfk_1")
+  sede               sede                 @relation(fields: [idSede], references: [idSede], onDelete: NoAction, onUpdate: NoAction, map: "profesor_ibfk_2")
+  registroasistencia registroasistencia[]
+
+  @@index([idCargo], map: "idCargo")
+  @@index([idSede], map: "idSede")
+}
+
+model registroasistencia {
+  idRegistro        Int       @id @default(autoincrement())
+  idProfesor        Int
+  Fecha             DateTime  @db.Date
+  HoraIngreso       DateTime  @db.Time(0)
+  HoraSalida        DateTime? @db.Time(0)
+  EstadoAsistencia  Boolean
+  MotivoFalta       String?   @db.Text
+  MedioNotificacion String?   @db.Text
+  idSede            Int
+  profesor          profesor  @relation(fields: [idProfesor], references: [idProfesor], onDelete: NoAction, onUpdate: NoAction, map: "registroasistencia_ibfk_1")
+  sede              sede      @relation(fields: [idSede], references: [idSede], onDelete: NoAction, onUpdate: NoAction, map: "registroasistencia_ibfk_2")
+
+  @@index([idProfesor], map: "idProfesor")
+  @@index([idSede], map: "idSede")
+}
+
+model sede {
+  idSede             Int                  @id @default(autoincrement())
+  NombreSede         String               @db.Text
+  Direccion          String               @db.Text
+  Telefono           String?              @db.VarChar(15)
+  Email              String?              @db.Text
+  gestiondocente     gestiondocente[]
+  profesor           profesor[]
+  registroasistencia registroasistencia[]
+}
+
+model tarea {
+  idTarea         Int      @id @default(autoincrement())
+  Titulo          String   @db.Text
+  Descripcion     String   @db.Text
+  FechaAsignacion DateTime @db.Date
+  FechaLimite     DateTime @db.Date
+  Estado          Boolean
+  Prioridad       Boolean
+  id_cargo        Int
+  idResponsable   Int?
+  cargo           cargo    @relation(fields: [id_cargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction, map: "tarea_ibfk_1")
+  usuario         usuario? @relation(fields: [idResponsable], references: [idUsuario], onDelete: NoAction, onUpdate: NoAction, map: "tarea_ibfk_2")
+
+  @@index([idResponsable], map: "idResponsable")
+  @@index([id_cargo], map: "id_cargo")
+}
+
+model usuario {
+  idUsuario       Int      @id @default(autoincrement())
+  Nombre          String   @db.Text
+  Apellido        String   @db.Text
+  Documento       String   @db.Text
+  NumeroDocumento Int
+  Email           String   @db.Text
+  NombreUsuario   String   @db.Text
+  Password        String   @db.Text
+  idCargo         Int?
+  Estado          Boolean? @default(true)
+  tarea           tarea[]
+  cargo           cargo?   @relation(fields: [idCargo], references: [idCargo], onDelete: NoAction, onUpdate: NoAction, map: "usuario_ibfk_1")
+
+  @@index([idCargo], map: "idCargo")
+}
