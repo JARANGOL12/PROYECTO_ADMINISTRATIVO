@@ -10,8 +10,8 @@ Content-Type: application/json
 
 {
   "nombre": "Gerente",
-  "imagenUrl": "https://www.shutterstock.com/image-photo/fashion-face-joy-man-studio-260nw-2472679943.jpg",
-  "descripcion": " de sistema"
+  "imagenUrl": "https://static.vecteezy.com/system/resources/previews/027/935/192/non_2x/happy-middle-aged-business-man-ceo-standing-in-office-arms-crossed-photo.jpg",
+  "descripcion": "Gerente de Sistemas"
 }
 
 

@@ -4,9 +4,9 @@ import cors from 'cors'
 
 
 
-interface Options{
-      port?:number
-      routes:Router
+interface Options {
+      port?: number
+      routes: Router
 
 }
 
@@ -14,26 +14,24 @@ interface Options{
 
 
 export class Server {
-      
-      private readonly app=express()
-      private readonly port:number
-      private readonly routes:Router
 
-      constructor(option:Options){
-            const {port = 80,routes}=option
+      private readonly app = express()
+      private readonly port: number
+      private readonly routes: Router
 
-            this.port=port
-            this.routes=routes
+      constructor(option: Options) {
+            const { port = 80, routes } = option
+
+            this.port = port
+            this.routes = routes
       }
-      async start(){
-         
-            const corsOptions = {
-                  origin: "http://localhost:5173/", // Permite solicitudes solo desde el frontend en localhost:5173
-                  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-                  allowedHeaders: "Content-Type,Authorization",
-                };
-            // Configuración de CORS
-           this.app.use(cors(corsOptions));
+      async start() {
+
+            this.app.use(cors({
+                  origin: 'http://localhost:5173' // Sin el espacio antes de la URL
+            }))
+
+
             // Middlewares
             this.app.use(express.json())
 
@@ -43,7 +41,7 @@ export class Server {
 
 
 
-            this.app.listen(this.port, ()=>{
+            this.app.listen(this.port, () => {
                   console.log(`Server running on port ${this.port}`)
             })
       }
