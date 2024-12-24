@@ -19,6 +19,7 @@ export class CargoRoutes{
              router.post('/register',controller.registerCargo)
              router.get('/',controller.getAllCargo)
              
+             
 
              return router
       }

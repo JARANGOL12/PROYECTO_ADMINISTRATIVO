@@ -1,5 +1,5 @@
 import { JwtAdapter } from "../../../config/jwt"
-import { RegisterUsuarioDto } from "../../dtos/auth/register-usuario.dto"
+import { LoginUsuarioDto } from "../../dtos/auth/login-user.dto"
 import { CustomError } from "../../error/Custom.error"
 import { UsuarioRepository } from "../../repositories/usuario.repository"
 
@@ -11,25 +11,19 @@ interface UsuarioToken{
       usuario:{
             idUsuario:number,
             nombre:string,
-            apellido:string,
-            documento:string,
-            numeroDocumento:number,
             email:string,
-            nombreUsuario:string,
-            password:string,
-            idCargo:number,
-            Estado:boolean
+           
       }
 }
 
 type usuarioToken=(payload:Object,duration?:string)=>Promise<string | null>
 
 
-interface RegisterUsuarioCase{
-      execute(registerUsuarioDto:RegisterUsuarioDto):Promise<any>
+interface LoginUsuarioCase{
+      execute(loginUsuarioDto:LoginUsuarioDto):Promise<any>
 
 }
-export class RegisterUsuario implements RegisterUsuarioCase{
+export class LoginUsuario implements LoginUsuarioCase{
 
       constructor(
             private readonly usuarioRepository:UsuarioRepository,
@@ -37,11 +31,11 @@ export class RegisterUsuario implements RegisterUsuarioCase{
 
       ){}
 
-      async execute(registerUsuarioDto:RegisterUsuarioDto):Promise<any>{
+      async execute(loginUsuarioDto:LoginUsuarioDto):Promise<any>{
 
             // Crear Usuario
 
-            const usuario = await this.usuarioRepository.register(registerUsuarioDto)
+            const usuario = await this.usuarioRepository.login(loginUsuarioDto)
 
             // TOKEN 
 
@@ -53,14 +47,7 @@ export class RegisterUsuario implements RegisterUsuarioCase{
             usuario:{
                   id:usuario.idUsuario,
                   nombre:usuario.nombre,
-                  apellido:usuario.apellido,
-                  documento:usuario.documento,
-                  numeroDocumento:usuario.numeroDocumento,
-                  email:usuario.email,
-                  nombreUsuario:usuario.nombreUsuario,
-                  password:usuario.password,
-                  idCargo:usuario.idCargo,
-                  estado:usuario.estadio
+                  email:usuario.email
             }
           }
       }
