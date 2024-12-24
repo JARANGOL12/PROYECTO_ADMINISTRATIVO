@@ -1,0 +1,19 @@
+### 
+GET  http://localhost:80/api/usuario/
+### 
+POST http://localhost:80/api/usuario/register
+Content-Type: application/json
+
+{
+  "nombre": "Antony",
+  "apellido": "Espinoza Calderon",
+  "documento": "DNI",
+  "numeroDocumento": 45789456,
+  "email": "AnthonyEspinoza10@gmail.com",
+  "nombreUsuario": "Anton",
+  "password": "1313",
+  "idCargo": 2,
+  "estado": true
+}
+
+

@@ -11,7 +11,7 @@ export class UsuarioEntity{
     public email:string,
     public nombreUsuario:string,
     public password:string,
-    public cargo:number,
+    public idCargo: number,
     public estadio?:boolean
     ){}  
 

@@ -1,0 +1,11 @@
+### login
+
+POST http://localhost:80/api/usuario/login
+Content-Type: application/json
+
+{
+ 
+  "email": "EduardoQuea12@gmail.com",
+  "password": "321654"
+}
+
