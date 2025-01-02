@@ -15,3 +15,12 @@ export  * from  './dtos/auth/register-usuario.dto'
 export * from './entities/usuario.entity'
 export * from './repositories/usuario.repository'
 export * from './use_cases/auth/register_usuario.use-case'
+
+
+// SEDE
+
+export * from './datasources/sede.datasource'
+export * from './dtos/auth/register-sede.dto'
+export * from './entities/sede.entity'
+export * from './repositories/sede.repository'
+export * from './use_cases/auth/register-sede.use-case'

@@ -5,14 +5,14 @@ POST http://localhost:80/api/usuario/register
 Content-Type: application/json
 
 {
-  "nombre": "Eduardo",
-  "apellido": "Quea Medina",
+  "nombre": "Jose",
+  "apellido": "Arango Llamocca",
   "documento": "DNI",
-  "numeroDocumento": 45457845,
-  "email": "EduardoQuea12@gmail.com",
-  "nombreUsuario": "EduCa",
-  "password": "321654",
-  "idCargo": 3,
+  "numeroDocumento": 74587451,
+  "email": "ArangoLlamocca12@gmail.com",
+  "nombreUsuario": "Arangol",
+  "password": "123456",
+  "idCargo": 1,
   "estado": true
 }
 
