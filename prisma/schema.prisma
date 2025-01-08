@@ -81,6 +81,7 @@ model sede {
   Direccion          String               @db.Text
   Telefono           String?              @db.VarChar(15)
   Email              String?              @db.Text
+  Imagen_Url         String               @db.VarChar(255)
   gestiondocente     gestiondocente[]
   profesor           profesor[]
   registroasistencia registroasistencia[]

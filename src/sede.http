@@ -1,0 +1,37 @@
+
+###  para obtener todos los cursos 
+GET  http://localhost:80/api/sede/
+
+### para obtener un curso en espesifico
+GET  http://localhost:80/api/sede/2
+### para crear un nuevo curso
+POST http://localhost:80/api/sede/register
+Content-Type: application/json
+
+
+{
+    "nombreSede": "Chinos",
+    "direccion": "av,san juan 643",
+    "telefono": "784545122",
+    "email":"chinosSJM@gmail.com",
+    "imagen_Url":"https://www.acarrion.edu.pe/wp-content/uploads/2023/11/foto-1.jpg"
+}
+
+### Actualizar los Cursos 
+PUT http://localhost:80/api/sede/update/1
+Content-Type: application/json
+
+{
+    "nombreSede": "Belesario",
+    "direccion": "Nueva Dirección",
+    "telefono": "123456789",
+    "email": "nuevo@example.com",
+    "imagen_Url": "https://example.com/image.jpg"
+}
+
+### Eliminar Logicamente
+
+PUT http://localhost:80/api/curso/delete/3
+Content-Type: application/json
+
+

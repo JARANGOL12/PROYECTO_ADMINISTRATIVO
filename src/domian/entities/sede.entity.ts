@@ -8,6 +8,8 @@ export class SedeEntity{
             public nombreSede:string,
             public direccion:string,
             public telefono:string,
-            public email:string
+            public email:string,
+            public imagen_Url:string
+
       ){}
 }
